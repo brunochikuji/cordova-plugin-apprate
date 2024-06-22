@@ -1,5 +1,6 @@
 package org.pushandplay.cordova.apprate;
 
+import org.apache.cordova.PluginResult;
 import android.app.Activity;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -19,6 +20,11 @@ public class AppRate extends CordovaPlugin {
     try {
       if (action.equals("getAppVersion")) {
         callbackContext.success(this.cordova.getActivity().getPackageManager().getPackageInfo(this.cordova.getActivity().getPackageName(), 0).versionName);
+        return true;
+      }
+      if (action.equals("isNativePromptAvailable")) {
+        PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, true);
+        callbackContext.sendPluginResult(pluginResult);
         return true;
       }
       if (action.equals("getAppTitle")) {
